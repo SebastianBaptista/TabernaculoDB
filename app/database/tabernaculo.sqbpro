@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="tabernaculo.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="1"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="177"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title=".Browsables" custom_title="0" dock_id="1" table="0,10:Browsables"/><dock_state state="000000ff00000000fd00000001000000020000024900000213fc0100000001fb000000160064006f0063006b00420072006f00770073006500310100000000000002490000011800ffffff000002490000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1*">-- Crear tabla para Admins
+CREATE TABLE Admins (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Email TEXT NOT NULL UNIQUE,
+    Password TEXT NOT NULL,
+    Name TEXT NOT NULL
+);
+
+-- Crear tabla para Members
+CREATE TABLE Members (
+    Id_member INTEGER PRIMARY KEY AUTOINCREMENT,
+    DNI_member TEXT NOT NULL UNIQUE,
+    Full_name TEXT NOT NULL,
+    Age INTEGER,
+    Phone TEXT,
+    Occupation TEXT,
+    Occupation_place TEXT,
+    Knowledge TEXT,
+    Vehicle TEXT,
+    Responsabilities TEXT,
+    Civil_status TEXT,
+    Childrens INTEGER,
+    Nationality TEXT,
+    Herarchy TEXT,
+    Situation TEXT
+);
+
+-- Crear tabla para Events
+CREATE TABLE Events (
+    Id_event INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name_event TEXT NOT NULL,
+    Kind_of_event TEXT,
+    Leader TEXT,
+    Matirials TEXT,
+    Start_time DATETIME,
+    End_time DATETIME,
+    Info TEXT
+);
+
+-- Crear tabla para Services
+CREATE TABLE Services (
+    Id_service INTEGER PRIMARY KEY AUTOINCREMENT,
+    Service_theme TEXT NOT NULL,
+    Num_asist INTEGER,
+    Date DATETIME
+);
+
+-- Crear tabla para Asists (asistencias)
+CREATE TABLE Asists (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Id_member INTEGER,
+    Id_service INTEGER,
+    FOREIGN KEY (Id_member) REFERENCES Members(Id_member),
+    FOREIGN KEY (Id_service) REFERENCES Services(Id_service)
+);
+
+-- Crear tabla para Members_in_events (miembros en eventos)
+CREATE TABLE Members_in_events (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Id_member INTEGER,
+    Id_event INTEGER,
+    FOREIGN KEY (Id_member) REFERENCES Members(Id_member),
+    FOREIGN KEY (Id_event) REFERENCES Events(Id_event)
+);</sql><current_tab id="0"/></tab_sql></sqlb_project>
